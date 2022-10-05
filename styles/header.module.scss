@@ -1,0 +1,20 @@
+.header {
+    margin-top: 54px;
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+    @media(max-width: 900px) {
+        margin-top: 36px;
+    }
+    @media (max-width: 650px) {
+        margin-top: 20px;
+        &__inner {
+            display: block;
+        }
+        &__name {
+            margin-bottom: 20px;
+        }
+    }
+}

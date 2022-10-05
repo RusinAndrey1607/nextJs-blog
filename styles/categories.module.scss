@@ -1,0 +1,23 @@
+.categories {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    &__item {
+        cursor: pointer;
+        margin-right: 10px;
+        padding: 3px 15px;
+        border-radius: 10px;
+        border: 1px solid #000;
+        color: #000;
+        background: transparent;
+        transition: all .5s;
+        &:hover {
+            color: #fff;
+            background: #000;
+        }
+        &.active {
+            color: #fff;
+            background: #000;
+        }
+    }
+}

@@ -1,0 +1,14 @@
+.footer {
+    flex: 0 0 auto;
+    margin-bottom: 40px;
+    &__item {
+        display: inline-block;
+        transition: all .5s;
+        &:not(&:last-child) {
+            margin-right: 24px;
+        }
+        &:hover {
+            color: rgb(27, 88, 185)
+        }
+    }
+}

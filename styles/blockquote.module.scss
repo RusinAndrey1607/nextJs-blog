@@ -1,0 +1,107 @@
+.blockquote {
+    margin-bottom: 90px;
+    &__inner {
+        display: grid;
+        column-gap: 100px;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+    &__title {
+        width: 100%;
+        font-weight: bold;
+        font-size: 40px;
+        line-height: 48px;
+    }
+    &__github {
+        cursor: pointer;
+        display: inline;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        text-decoration: underline;
+    }
+    &__portfolio {
+        display: inline-block;
+        border: 1px solid #000;
+        margin-right: 32px;
+        background: #000;
+        padding: 15px 50px;
+        color: #fff;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        cursor: pointer;
+        transition: all .5s;
+        &:hover {
+            background: #fff;
+            color: #000;
+        }
+    }
+    @media(max-width: 1100px) {
+        &__inner {
+            column-gap: 50px;
+        }
+    }
+    @media(max-width: 1020px) {
+        &__title {
+            font-size: 36px;
+            line-height: 40px;
+        }
+    }
+    @media(max-width: 960px) {
+        &__title {
+            font-size: 32px;
+            line-height: 38px;
+        }
+    }
+    @media(max-width: 840px) {
+        &__title {
+            font-size: 30px;
+            line-height: 36px;
+        }
+    }
+    @media(max-width: 800px) {
+        &__inner {
+            display: grid;
+            grid-template-columns: 1fr;
+            row-gap: 30px;
+        }
+        &__buttons {
+            display: flex;
+            align-items: center;
+        }
+        &__title {
+            width: 100%;
+            font-weight: bold;
+            font-size: 30px;
+            line-height: 36px;
+        }
+    }
+    @media(max-width: 500px) {
+        &__title {
+            font-size: 26px;
+            line-height: 32px;
+        }
+    }
+    @media(max-width: 420px) {
+        &__buttons {
+            display: block;
+        }
+        &__portfolio {
+            display: block;
+            text-align: center;
+            margin: 0 auto;
+        }
+        &__github {
+            margin-top: 20px;
+            text-align: center;
+            display: block;
+        }
+    }
+    @media(max-width: 370px) {
+        &__title {
+            font-size: 24px;
+            line-height: 32px;
+        }
+    }
+}

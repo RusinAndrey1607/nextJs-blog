@@ -18,7 +18,7 @@ interface Props {
 }
 const Home = ({ posts, categories }: Props) => {
   const [mainPost, setMainPost] = useState(posts[0])
-  const [postArray, setPosts] = useState(posts)
+  const [postArray, setPostsArray] = useState(posts)
   const [category, setCategory] = useState("")
 
   const context = useContext(Context)
@@ -29,11 +29,11 @@ const Home = ({ posts, categories }: Props) => {
 
     if (category) {
       fetchPostsByReference(category).then(
-        res => setPosts(res)
+        res => setPostsArray(res)
       )
     } else {
       fetchPosts().then(
-        res => setPosts(res)
+        res => setPostsArray(res)
       )
     }
 
@@ -43,7 +43,7 @@ const Home = ({ posts, categories }: Props) => {
       <>
         <Header />
         <MainPost post={mainPost} />
-        <Posts posts={category ? postArray : postArray.slice(1)} />
+        <Posts posts={postArray.filter(item => item._id != mainPost._id)} />
         <Blockquote />
       </>
     </Container>

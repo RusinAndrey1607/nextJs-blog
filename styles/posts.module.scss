@@ -14,7 +14,17 @@
         margin-bottom: 12px;
     }
     &__img__box {
+        display: block;
+        position: relative;
+        width: 100%;
+        min-height: 300px;
         margin-bottom: 30px;
+        @media (max-width: 600px) {
+            min-height: 250px;
+        }
+        @media (max-width: 500px) {
+            min-height: 200px;
+        }
     }
     &__img {
         width: 100%;
@@ -35,13 +45,13 @@
             }
         }
     }
-    @media(max-width: 1000px) {
+    @media (max-width: 1000px) {
         &__items {
             column-gap: 60px;
             row-gap: 40px;
         }
     }
-    @media(max-width: 800px) {
+    @media (max-width: 800px) {
         &__date {
             margin-bottom: 20px;
         }

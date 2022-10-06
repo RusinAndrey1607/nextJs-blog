@@ -12,8 +12,8 @@ const Footer = (props: Props) => {
         <footer className={styles.footer}>
             <div className="container">
                 <ul className={styles.footer__links}>
-                    {links.map((item) => <li className={styles.footer__item}>
-                        <a href={item.url} target="_blank" className={styles.footer__link}>{item.name}</a>
+                    {links.map((item) => <li key={item.name} className={styles.footer__item}>
+                        <a href={item.url} target="_blank" rel="noreferrer" className={styles.footer__link}>{item.name}</a>
                     </li>)}
                 </ul>
             </div>

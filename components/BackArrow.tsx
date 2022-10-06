@@ -1,10 +1,13 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-
+import backArrow from '../public/backArrow.png'
 const BackArrow = () => {
     return (
         <Link href={"/"}>
-            <img src={'../backArrow.png'} className="backArrow"></img>
+            <a >
+                <Image src={backArrow} width="50px" height='50px'></Image>
+            </a>
         </Link>
     )
 }

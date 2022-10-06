@@ -5,6 +5,7 @@ import { Post } from '../typings'
 import { getDate } from '../utils/getDate'
 import Author from './Author'
 import PostCategories from './PostCategories'
+import Image  from 'next/image';
 
 type Props = {
     post: Post
@@ -15,7 +16,7 @@ const PostItem = ({ post }: Props) => {
     return (
         <div className={styles.posts__item}>
             <div className={styles.posts__img__box}>
-                <img src={post.image || "../1.jpg"} alt="" className={styles.posts__img}></img>
+                <Image priority src={post.image || "../1.jpg"} layout="fill" alt="" className={styles.posts__img}></Image>
             </div>
             <Link href={"/post/" + post.slug.current} >
                 <a>

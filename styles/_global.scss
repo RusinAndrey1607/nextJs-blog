@@ -26,9 +26,9 @@ body {
 }
 
 .container {
-    max-width: 1270px;
+    max-width: 1260px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0 10px;
 }
 
 .container__fluid {
@@ -75,6 +75,9 @@ body {
 }
 
 .backArrow {
+    display: block;
+    width: 50px;
+    height: 50px;
     margin-top: 20px;
     cursor: pointer;
 }

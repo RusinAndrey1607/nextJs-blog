@@ -9,6 +9,8 @@ import { fetchPostsByReference } from '../../utils/fetchPostsByReference';
 import { fetchAuthor } from '../../utils/fetchAuthor';
 import { PortableText } from '@portabletext/react'
 import BackArrow from '../../components/BackArrow'
+import Image from 'next/image'
+import defaultImage from '../../public/defaultImage.jpeg'
 
 
 export const getStaticPaths: GetStaticPaths<ParsedUrlQuery> = async (context) => {
@@ -24,7 +26,7 @@ export const getStaticPaths: GetStaticPaths<ParsedUrlQuery> = async (context) =>
   }
 
 
-  
+
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -56,7 +58,12 @@ const AuthorPage = ({ author, posts }: Props) => {
         <div className="container">
           <BackArrow />
           <div className={styles.authorPage__inner}>
-            <img src={author.image || "../../1.jpg"} alt="" className={styles.authorPage__img} />
+            <div className="">
+              <div className={styles.authorPage__img}>
+                <Image objectFit='cover' className={styles.authorPage__img} layout='fill' src={author.image || defaultImage} alt=""></Image>
+              </div>
+            </div>
+
             <div className={styles.authorPage__info}>
               <h2 className={styles.authorPage__name}>{author.name}</h2>
               <div className={styles.authorPage__bio}>

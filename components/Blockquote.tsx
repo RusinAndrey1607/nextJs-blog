@@ -12,8 +12,8 @@ const Blockquote = (props: Props) => {
                         Website made by internet-coder Andrey using NextJs
                     </h3>
                     <div className={styles.blockquote__buttons}>
-                        <a target={"_blank"} href="https://andrey-portfolio.vercel.app/" className={styles.blockquote__portfolio}>Watch Portfolio</a>
-                        <a target={"_blank"} href="https://github.com/RusinAndrey1607" className={styles.blockquote__github}>View my github</a>
+                        <a target={"_blank"} rel="noreferrer" href="https://andrey-portfolio.vercel.app/" className={styles.blockquote__portfolio}>Watch Portfolio</a>
+                        <a target={"_blank"} rel="noreferrer" href="https://github.com/RusinAndrey1607" className={styles.blockquote__github}>View my github</a>
                     </div>
                 </div>
             </div>

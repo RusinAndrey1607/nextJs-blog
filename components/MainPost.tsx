@@ -5,16 +5,20 @@ import { getDate } from '../utils/getDate'
 import Author from './Author'
 import Link from 'next/link'
 import PostCategories from './PostCategories';
+import Image from 'next/image'
+import defaultImage from '../public/defaultImage.jpeg'
 
 type Props = {
     post: Post
 }
 
 const MainPost = ({ post }: Props) => {
-    return (
+    return post ? (
         <section className={styles.mainPost}>
             <div className="container__fluid">
-                <img src={post.image || "1.jpg"} alt="" className={styles.mainPost__img}></img>
+                <div className={styles.mainPost__img}>
+                    <Image src={post.image || defaultImage} priority objectFit='cover' layout='fill' alt=""></Image>
+                </div>
             </div>
             <div className="container">
                 <div className={styles.mainPost__inner}>
@@ -45,7 +49,7 @@ const MainPost = ({ post }: Props) => {
                 </div>
             </div>
         </section>
-    )
+    ) : <></>
 }
 
 export default MainPost

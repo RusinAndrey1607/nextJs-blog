@@ -17,7 +17,7 @@ const Posts = ({ posts }: Props) => {
                 </h2>
                 <Categories/>
                 <div className={styles.posts__items}>
-                    {posts.map(item => <PostItem key={item._id} post={item} />)}
+                    {posts?.map(item => <PostItem key={item._id} post={item} />)}
                 </div>
             </div>
         </section>

@@ -6,7 +6,7 @@ const BackArrow = () => {
     return (
         <Link href={"/"}>
             <a >
-                <Image src={backArrow} width="50px" height='50px'></Image>
+                <Image src={backArrow} width="50px" alt="Back" height='50px'></Image>
             </a>
         </Link>
     )

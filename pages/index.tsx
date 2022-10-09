@@ -38,7 +38,7 @@ const Home = ({ posts, categories }: Props) => {
   const handleChange = async () => {
     const posts = await fetchPostsByReference(category._id)
     setPostsArray(posts)
-    
+
 
   }
   context.categories = categories
@@ -56,7 +56,7 @@ const Home = ({ posts, categories }: Props) => {
       )
     }
 
-  }, [category])
+  }, [category, handleChange])
   return (
     <Container>
       <>

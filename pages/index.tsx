@@ -31,22 +31,22 @@ interface Props {
 const Home = ({ posts, categories }: Props) => {
   const [mainPost, setMainPost] = useState(posts[0])
   const [postArray, setPostsArray] = useState(posts)
-  const [category, setCategory] = useState({} as Category)
+  const [category, setCategory] = useState("")
 
   const context = useContext(Context)
 
   const handleChange = useCallback(async () => {
-    const posts = await fetchPostsByReference(category._id)
+    const posts = await fetchPostsByReference(category)
     setPostsArray(posts)
 
 
-  }, [])
+  }, [category])
   context.categories = categories
   context.setCategory = setCategory
 
   useEffect(() => {
 
-    if (category._id) {
+    if (category) {
       handleChange()
 
     } else {

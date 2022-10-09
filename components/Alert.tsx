@@ -9,7 +9,7 @@ const Alert = (props: Props) => {
       <div className={styles.container}>
         <div className={styles.alert__inner}>
           <p className={styles.alert__text}>
-            The source code for this blog is <a href="https://github.com/RusinAndrey1607" target={"_blank"} rel="noreferrer" className={styles.alert__link}>available on my  GitHub</a>
+            The source code for this blog is <a href="https://github.com/RusinAndrey1607/nextJs-blog" target={"_blank"} rel="noreferrer" className={styles.alert__link}>available on my  GitHub</a>
           </p>
         </div>
       </div>

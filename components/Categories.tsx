@@ -6,21 +6,21 @@ import { Context } from '../pages/_app'
 const Categories = () => {
     const [active, setActive] = useState("")
     const { categories, setCategory } = useContext(Context)
-    const handleClick = (id: string) => {
+    const handleClick = (category: Category) => {
 
-        if (active == id) {
+        if (active == category._id) {
             setActive("")
-            setCategory("")
+            setCategory({} as Category)
 
         } else {
-            setActive(id)
-            setCategory(id)
+            setActive(category._id)
+            setCategory(category)
         }
     }
 
     return (
         <ul className={styles.categories}>
-            {categories.map((category: Category) => <li onClick={() => handleClick(category._id)} key={category._id} className={`${styles.categories__item} ${active == category._id ? styles.active : ""}`} >
+            {categories.map((category: Category) => <li onClick={() => handleClick(category)} key={category._id} className={`${styles.categories__item} ${active == category._id ? styles.active : ""}`} >
                 {category.title}
             </li>)}
         </ul>

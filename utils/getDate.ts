@@ -12,10 +12,10 @@ const monthNamesList = [
     "October",
     "November",
     "December",
-  ];
+];
 
 
-export const getDate = (dateString:string) =>{
+export const getDate = (dateString: string) => {
     const date = new Date(dateString)
     const result = `${monthNamesList[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
     return result

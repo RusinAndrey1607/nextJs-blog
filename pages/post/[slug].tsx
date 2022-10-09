@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import BackArrow from '../../components/BackArrow'
 import Blockquote from '../../components/Blockquote'
 import Container from '../../components/Container'
@@ -7,23 +6,29 @@ import Posts from '../../components/Posts'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { Post, slugType } from '../../typings'
 import { ParsedUrlQuery } from 'querystring';
-import { fetchPostBySlug } from '../../utils/fetchPostBySlug';
-import { fetchPosts } from '../../utils/fetchPosts';
+import { fetchPaths, fetchPostBySlug, fetchPosts } from '../../utils/fetchData'
+
 
 export const getStaticPaths: GetStaticPaths<ParsedUrlQuery> = async (context) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getPaths?type=post`)
-    const slug = await res.json()
+
+    const slugArray = await fetchPaths("post")
+
+    const paths = slugArray.map((item: { slug: slugType }) => {
+        return { params: { slug: item.slug.current } }
+    })
+
     return {
-        paths: slug.paths.map((item: { slug: slugType }) => {
-            return { params: { slug: item.slug.current } }
-        }),
+        paths,
         fallback: false
     }
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const slug = context.params as { slug: string }
+
+    
     const post = await fetchPostBySlug(slug.slug)
+
     const posts = await fetchPosts()
 
     return {
@@ -41,18 +46,16 @@ type Props = {
     posts: Post[]
 }
 const PostPage = ({ posts, post }: Props) => {
-    const router = useRouter()
-    const { slug } = router.query
 
-    return (
-        <Container>
+    return posts && post ? (
+        <Container title={post.title}>
             <div className="container">
                 <BackArrow />
                 <PostComponent post={post} />
                 <Posts posts={posts.filter(item => item._id != post._id)} />
                 <Blockquote />
             </div>
-        </Container>)
+        </Container>) : <></>
 }
 
 export default PostPage

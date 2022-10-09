@@ -5,23 +5,22 @@ import Container from '../../components/Container'
 import Posts from '../../components/Posts'
 import styles from "../../styles/authorPage.module.scss"
 import { Author, Post, slugType } from '../../typings'
-import { fetchPostsByReference } from '../../utils/fetchPostsByReference';
-import { fetchAuthor } from '../../utils/fetchAuthor';
 import { PortableText } from '@portabletext/react'
 import BackArrow from '../../components/BackArrow'
 import Image from 'next/image'
 import defaultImage from '../../public/defaultImage.jpeg'
+import { fetchAuthor, fetchPaths, fetchPostsByReference } from '../../utils/fetchData'
 
 
 export const getStaticPaths: GetStaticPaths<ParsedUrlQuery> = async (context) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getPaths?type=author`)
-  const slug = await res.json()
 
+  const slugArray = await fetchPaths("author")
 
+  const paths = slugArray.map((item: { slug: slugType }) => {
+    return { params: { slug: item.slug.current } }
+  })
   return {
-    paths: slug.paths.map((item: { slug: slugType }) => {
-      return { params: { slug: item.slug.current } }
-    }),
+    paths,
     fallback: false
   }
 
@@ -30,9 +29,10 @@ export const getStaticPaths: GetStaticPaths<ParsedUrlQuery> = async (context) =>
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const slug = context.params as { slug: string }
 
+  const slug = context.params as { slug: string }
   const author = await fetchAuthor(slug.slug)
+
   const posts = await fetchPostsByReference(author._id)
 
   return {
@@ -53,7 +53,7 @@ type Props = {
 const AuthorPage = ({ author, posts }: Props) => {
 
   return (
-    <Container>
+    <Container title={author.name}>
       <>
         <div className="container">
           <BackArrow />

@@ -5,32 +5,51 @@ import Header from '../components/Header'
 import MainPost from '../components/MainPost'
 import Posts from '../components/Posts'
 import { Category, Post } from '../typings'
-import { fetchPosts } from '../utils/fetchPosts'
-import { fetchCategories } from '../utils/fetchCategories';
 import { useContext, useEffect, useState } from 'react';
-import { fetchPostsByReference } from '../utils/fetchPostsByReference'
 import { Context } from './_app';
+import { fetchCategories, fetchPosts, fetchPostsByReference } from '../utils/fetchData'
 
+
+export const getStaticProps: GetStaticProps = async () => {
+
+
+  const posts = await fetchPosts()
+  const categories = await fetchCategories()
+  return {
+    props: {
+      posts,
+      categories
+    }
+  }
+}
 
 interface Props {
   posts: Post[]
   categories: Category[]
 }
+
 const Home = ({ posts, categories }: Props) => {
   const [mainPost, setMainPost] = useState(posts[0])
   const [postArray, setPostsArray] = useState(posts)
-  const [category, setCategory] = useState("")
+  const [category, setCategory] = useState({} as Category)
 
   const context = useContext(Context)
+
+  const handleChange = async () => {
+    const posts = await fetchPostsByReference(category._id)
+    setPostsArray(posts)
+    
+
+  }
   context.categories = categories
   context.setCategory = setCategory
 
   useEffect(() => {
 
-    if (category) {
-      fetchPostsByReference(category).then(
-        res => setPostsArray(res)
-      )
+    if (category._id) {
+      handleChange()
+
+
     } else {
       fetchPosts().then(
         res => setPostsArray(res)
@@ -53,13 +72,3 @@ const Home = ({ posts, categories }: Props) => {
 export default Home
 
 
-export const getStaticProps: GetStaticProps = async () => {
-  const posts = await fetchPosts()
-  const categories = await fetchCategories()
-  return {
-    props: {
-      posts,
-      categories
-    }
-  }
-} 
